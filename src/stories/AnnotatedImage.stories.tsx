@@ -1,7 +1,7 @@
-import React from 'react';
 import AnnotatedImage from '../components/AnnotatedImage';
-import { Annotation } from '../types/annotations';
 import OverheadHouseImage from '../assets/photos/blake-wheeler-zBHU08hdzhY-unsplash.jpg';
+import React from 'react';
+import { Annotation } from '../types/annotations';
 
 export default {
   title: 'AnnotatedImage',
