@@ -6,9 +6,13 @@ import { Annotation } from '../types/annotations';
 export default {
   title: 'AnnotatedImage',
   component: AnnotatedImage,
+  argTypes: {
+    width: { control: { type: 'range', min: 200, max: 1000, step: 10 } },
+    height: { control: { type: 'range', min: 200, max: 1000, step: 10 } },
+  },
 };
 
-export const Default = () => {
+export const Default = ({ width, height }: { width: number; height: number }) => {
   const annotations: Annotation[] = [
     {
       id: '1',
@@ -31,7 +35,12 @@ export const Default = () => {
 
   return (
     <>
-      <AnnotatedImage src={OverheadHouseImage} annotations={annotations} height={500} width={500} />
+      <AnnotatedImage
+        src={OverheadHouseImage}
+        annotations={annotations}
+        height={height}
+        width={width}
+      />
       <div>
         Photo by{' '}
         <a href="https://unsplash.com/@blakesox?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
@@ -44,4 +53,9 @@ export const Default = () => {
       </div>
     </>
   );
+};
+
+Default.args = {
+  width: 500,
+  height: 500,
 };
