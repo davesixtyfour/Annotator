@@ -17,9 +17,9 @@ export default function PointAnnotation({ point }: PointAnnotationProps) {
   const isPositive = point.isPositive;
   const { imageWidth, imageHeight, scale } = useContext(ImageDimensionsContext);
 
-  const radius = 7 / scale.x;
+  const radius = 8 / scale.x;
   const lineWidth = 2 / scale.x;
-  const fillColor = isPositive ? 0x00cc00 : 0xff0000; // Darker green for positive, red for negative
+  const fillColor = isPositive ? 0x00 : 0xff0000; // Black for positive, red for negative
   const borderColor = 0xffffff; // White border
 
   const [x, y] = [

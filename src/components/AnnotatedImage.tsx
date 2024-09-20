@@ -58,7 +58,7 @@ export default function AnnotatedImage({ annotations, height, src, width }: Anno
     <Stage
       width={width}
       height={height}
-      options={{ antialias: true, autoDensity: true, resolution: window.devicePixelRatio }}
+      options={{ antialias: true, autoDensity: true, resolution: window.devicePixelRatio || 1 }}
     >
       <ImageDimensionsContext.Provider
         value={{
