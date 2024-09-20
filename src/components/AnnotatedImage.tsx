@@ -4,6 +4,8 @@ import PointAnnotation from './PointAnnotation';
 import Segmentation from './SegmentationAnnotation';
 import { Annotation } from '../types/annotations';
 import { Container, Sprite, Stage } from '@pixi/react';
+import { FederatedPointerEvent } from '@pixi/events';
+import '@pixi/events'; // Necessary for interactivity
 
 type ImageDimensionsContextType = {
   imageWidth: number;
@@ -22,9 +24,16 @@ type AnnotatedImageProps = {
   height: number;
   src: string;
   width: number;
+  onClick?: (x: number, y: number) => void;
 };
 
-export default function AnnotatedImage({ annotations, height, src, width }: AnnotatedImageProps) {
+export default function AnnotatedImage({
+  annotations,
+  height,
+  src,
+  width,
+  onClick,
+}: AnnotatedImageProps) {
   const [scale, setScale] = useState({ x: 1, y: 1 });
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -50,6 +59,15 @@ export default function AnnotatedImage({ annotations, height, src, width }: Anno
     img.src = src;
   }, [src, width, height]);
 
+  const handleClick = (event: FederatedPointerEvent) => {
+    if (!onClick || !imageLoaded) return;
+
+    const x = event.global.x / (scale.x * imageSize.width);
+    const y = event.global.y / (scale.y * imageSize.height);
+
+    onClick(x, y);
+  };
+
   if (!imageLoaded) {
     return <div>Loading...</div>;
   }
@@ -68,7 +86,14 @@ export default function AnnotatedImage({ annotations, height, src, width }: Anno
         }}
       >
         <Container scale={scale} x={width / 2} y={height / 2}>
-          <Sprite image={src} anchor={0.5} width={imageSize.width} height={imageSize.height} />
+          <Sprite
+            image={src}
+            anchor={0.5}
+            width={imageSize.width}
+            height={imageSize.height}
+            click={handleClick}
+            interactive={true}
+          />
           {annotations.map((annotation) => (
             <React.Fragment key={annotation.id}>
               {annotation.bbox && <BoundingBox bbox={annotation.bbox} />}

@@ -1,7 +1,8 @@
+import React from 'react';
 import AnnotatedImage from '../components/AnnotatedImage';
 import OverheadHouseImage from '../assets/photos/blake-wheeler-zBHU08hdzhY-unsplash.jpg';
-import React from 'react';
 import { Annotation } from '../types/annotations';
+import { fn } from '@storybook/test';
 
 export default {
   title: 'AnnotatedImage',
@@ -9,10 +10,22 @@ export default {
   argTypes: {
     width: { control: { type: 'range', min: 200, max: 1000, step: 10 } },
     height: { control: { type: 'range', min: 200, max: 1000, step: 10 } },
+    onClick: { action: 'click' },
+  },
+  args: {
+    onClick: fn(),
   },
 };
 
-export const Default = ({ width, height }: { width: number; height: number }) => {
+export const Default = ({
+  width,
+  height,
+  onClick,
+}: {
+  width: number;
+  height: number;
+  onClick: (x: number, y: number) => void;
+}) => {
   const annotations: Annotation[] = [
     {
       id: '1',
@@ -71,6 +84,7 @@ export const Default = ({ width, height }: { width: number; height: number }) =>
         annotations={annotations}
         height={height}
         width={width}
+        onClick={onClick}
       />
       <div>
         Photo by{' '}
