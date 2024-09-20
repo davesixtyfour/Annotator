@@ -55,7 +55,11 @@ export default function AnnotatedImage({ annotations, height, src, width }: Anno
   }
 
   return (
-    <Stage width={width} height={height}>
+    <Stage
+      width={width}
+      height={height}
+      options={{ antialias: true, autoDensity: true, resolution: window.devicePixelRatio }}
+    >
       <ImageDimensionsContext.Provider
         value={{
           imageWidth: imageSize.width,
