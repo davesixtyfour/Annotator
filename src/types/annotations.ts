@@ -15,4 +15,8 @@ export type Annotation = {
   label: string;
   bbox?: [number, number, number, number]; // [top left x, top left y, width, height]
   segmentation?: Coords2D[];
+  point?: {
+    coords: Coords2D;
+    isPositive: boolean;
+  };
 };

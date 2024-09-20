@@ -1,5 +1,6 @@
-import BoundingBox from './BoundingBoxAnnotation';
 import React, { useState, useEffect, createContext } from 'react';
+import BoundingBox from './BoundingBoxAnnotation';
+import PointAnnotation from './PointAnnotation';
 import Segmentation from './SegmentationAnnotation';
 import { Annotation } from '../types/annotations';
 import { Container, Sprite, Stage } from '@pixi/react';
@@ -68,6 +69,7 @@ export default function AnnotatedImage({ annotations, height, src, width }: Anno
             <React.Fragment key={annotation.id}>
               {annotation.bbox && <BoundingBox bbox={annotation.bbox} />}
               {annotation.segmentation && <Segmentation segmentation={annotation.segmentation} />}
+              {annotation.point && <PointAnnotation point={annotation.point} />}
             </React.Fragment>
           ))}
         </Container>

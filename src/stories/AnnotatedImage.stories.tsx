@@ -46,6 +46,22 @@ export const Default = ({ width, height }: { width: number; height: number }) =>
         [0.47, 0.59],
       ],
     },
+    {
+      id: '4',
+      label: 'positive point',
+      point: {
+        coords: [0.3, 0.3],
+        isPositive: true,
+      },
+    },
+    {
+      id: '5',
+      label: 'negative point',
+      point: {
+        coords: [0.7, 0.7],
+        isPositive: false,
+      },
+    },
   ];
 
   return (
