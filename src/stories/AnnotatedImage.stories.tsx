@@ -16,19 +16,34 @@ export const Default = ({ width, height }: { width: number; height: number }) =>
   const annotations: Annotation[] = [
     {
       id: '1',
-      label: 'dog',
-      bbox: [50, 50, 400, 400],
+      label: 'house',
+      segmentation: [
+        [0.32, 0.25],
+        [0.43, 0.24],
+        [0.44, 0.42],
+        [0.32, 0.42],
+      ],
     },
     {
       id: '2',
-      label: 'cat',
+      label: 'house',
       segmentation: [
-        [250, 125],
-        [375, 187.5],
-        [375, 312.5],
-        [250, 375],
-        [125, 312.5],
-        [125, 187.5],
+        [0.47, 0.25],
+        [0.58, 0.25],
+        [0.58, 0.43],
+        [0.47, 0.43],
+        [0.47, 0.25],
+      ],
+    },
+    {
+      id: '3',
+      label: 'house',
+      segmentation: [
+        [0.48, 0.59],
+        [0.59, 0.59],
+        [0.59, 0.77],
+        [0.48, 0.77],
+        [0.47, 0.59],
       ],
     },
   ];
